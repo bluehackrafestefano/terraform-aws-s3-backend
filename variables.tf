@@ -7,7 +7,7 @@ variable "bucket-name" {
 variable "sse_algorithm" {
   type    = string
   default = "AES256"
-  description = "The server-side encryption algorithm to use. Valid values are `AES256` and `aws:kms`"
+  description = "The server-side encryption algorithm to use. `AES256` or `aws:kms`"
 }
 
 variable "backend_s3_key" {
