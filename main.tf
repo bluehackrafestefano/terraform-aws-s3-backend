@@ -5,11 +5,11 @@ resource "random_string" "random" {
 }
 
 resource "aws_s3_bucket" "tf-remote-state" {
-  bucket = "${random_string.random.result}-${var.bucket-name}"
+  bucket = "${var.bucket-name}-${random_string.random.result}"
   # Normally force_destroy must be false. 
   # Because if we delete s3 mistakenly, we lost all of the states.
   # Change it on  prod!
-  force_destroy = true
+  force_destroy = true  
 }
 
 
@@ -34,7 +34,7 @@ resource "aws_s3_bucket_versioning" "versioning_backend_s3" {
 # NoSQL db with min requirements for locking of tf
 resource "aws_dynamodb_table" "tf-remote-state-lock" {
   hash_key = "LockID"
-  name     = "tf-s3-app-lock"
+  name     = "tf-s3-app-lock-${random_string.random.result}"
   attribute {
     name = "LockID"
     type = "S"
