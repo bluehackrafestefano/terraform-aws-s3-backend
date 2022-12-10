@@ -9,7 +9,7 @@ resource "aws_s3_bucket" "tf-remote-state" {
   # Normally force_destroy must be false. 
   # Because if we delete s3 mistakenly, we lost all of the states.
   # Change it on  prod!
-  force_destroy = true  
+  force_destroy = true
 }
 
 
